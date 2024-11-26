@@ -175,7 +175,7 @@ def write_config(config):
 def run_compose_cmd(cmd):
     assert DOCKER_CONFIG_PATH
     assert os.environ['FEDNODE_RELEASE_TAG']
-    return os.system("{} docker-compose -f {} -p {} {}".format(SUDO_CMD, DOCKER_CONFIG_PATH, PROJECT_NAME, cmd))
+    return os.system("{} docker compose -f {} -p {} {}".format(SUDO_CMD, DOCKER_CONFIG_PATH, PROJECT_NAME, cmd))
 
 
 def is_port_open(port):
@@ -357,7 +357,11 @@ def main():
                 if not IS_WINDOWS:
                     os.chown(active_config, default_config_stat.st_uid, default_config_stat.st_gid)
 
-        # create symlinks to the data volumes (for ease of use)
+        
+		# launch
+        run_compose_cmd("up -d")
+		
+		# create symlinks to the data volumes (for ease of use)
         if not IS_WINDOWS:
             data_dir = os.path.join(SCRIPTDIR, "data")
             if not os.path.exists(data_dir):
@@ -370,9 +374,6 @@ def main():
                 if mountpoint_path is not None and not os.path.lexists(symlink_path):
                     os.symlink(mountpoint_path, symlink_path)
                     print("For convenience, symlinking {} to {}".format(mountpoint_path, symlink_path))
-
-        # launch
-        run_compose_cmd("up -d")
     elif args.command == 'uninstall':
         run_compose_cmd("down")
         os.remove(FEDNODE_CONFIG_PATH)
