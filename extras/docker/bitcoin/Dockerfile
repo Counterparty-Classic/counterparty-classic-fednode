@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 MAINTAINER Counterparty Developers <dev@counterparty.io>
 
@@ -6,9 +6,9 @@ MAINTAINER Counterparty Developers <dev@counterparty.io>
 RUN apt-get update && apt-get install -y wget
 
 # install bitcoin core
-ENV BITCOIN_VER="25.1"
-ENV BITCOIN_FOLDER_VER="25.1"
-ENV BITCOIN_SHASUM="a978c407b497a727f0444156e397b50491ce862d1f906fef9b521415b3611c8b"
+ENV BITCOIN_VER="28.1"
+ENV BITCOIN_FOLDER_VER="28.1"
+ENV BITCOIN_SHASUM="07f77afd326639145b9ba9562912b2ad2ccec47b8a305bd075b4f4cb127b7ed7"
 WORKDIR /tmp
 
 RUN wget --no-check-certificate -O bitcoin-${BITCOIN_VER}-x86_64-linux-gnu.tar.gz https://bitcoincore.org/bin/bitcoin-core-${BITCOIN_VER}/bitcoin-${BITCOIN_VER}-x86_64-linux-gnu.tar.gz
@@ -24,7 +24,6 @@ RUN rm bitcoin-${BITCOIN_VER}-x86_64-linux-gnu.tar.gz && rm -rf bitcoin-${BITCOI
 
 # Set up bitcoind dirs and files
 RUN mkdir -p /root/.bitcoin/
-COPY bitcoin.conf /root/.bitcoin/
 COPY start.sh /usr/local/bin/start.sh
 RUN chmod a+x /usr/local/bin/start.sh
 

@@ -1,4 +1,4 @@
-testnet=1
+testnet4=1
 rpcuser=rpc
 rpcpassword=rpc
 server=1
@@ -9,7 +9,7 @@ rpcworkqueue=16
 rpctimeout=300
 txindex=1
 
-[test]
+[testnet4]
 rpcallowip=0.0.0.0/0
 rpcbind=0.0.0.0
 rpcport=18332
