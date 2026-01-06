@@ -91,7 +91,7 @@ SUDO_CMD = None
 # set in main()
 DOCKER_CONFIG_PATH = None
 
-DOCKER_COMPOSE_COMMAND = "docker-compose"
+DOCKER_COMPOSE_COMMAND = "docker compose"
 
 def parse_args():
     parser = argparse.ArgumentParser(prog='fednode', description='fednode utility v{}'.format(VERSION))
