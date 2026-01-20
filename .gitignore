@@ -42,3 +42,4 @@ nosetests.xml
 # Auto-created data dir
 data
 
+.DS_Store
